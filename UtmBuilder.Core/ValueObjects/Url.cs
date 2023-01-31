@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using UtmBuilder.Core.ValueObjects.Exceptions;
 using static System.Net.WebRequestMethods;
 
 namespace UtmBuilder.Core.ValueObjects
 {
     public class Url : ValueObjects
     {
-        private const string UrlRegexPattern = @"^((http | ftp | https | www)://)?([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?$";
+        
 
         /// Create a new URL
         /// </summary>
@@ -18,8 +19,7 @@ namespace UtmBuilder.Core.ValueObjects
         public Url(string address)
         {
             Address = address;
-            if (Regex.IsMatch(Address, UrlRegexPattern))
-                throw new Exception("email inválido");
+            InvalidUrlException.ThrowIfInvalidUrl(address);
         }
 
         /// <summary>
