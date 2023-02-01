@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtmBuilder.Core.ValueObjects.Exceptions;
 
 namespace UtmBuilder.Core.ValueObjects
 {
@@ -24,7 +25,11 @@ namespace UtmBuilder.Core.ValueObjects
             Source = source;
             Id = id;
             Term = term;    
-            Content = content;  
+            Content = content;
+
+            InvalidCampaignException.ThrowIfInvalidUrl(source, "UTM source is invalid");
+            InvalidCampaignException.ThrowIfInvalidUrl(source, "UTM medium is invalid");
+            InvalidCampaignException.ThrowIfInvalidUrl(source, "UTM name is invalid");
         }
 
         public string Source { get; }
