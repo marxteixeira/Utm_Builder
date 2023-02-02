@@ -33,5 +33,18 @@ namespace UtmBuilder.Core.Tests
             Assert.AreEqual(Result, utm.ToString());
             Assert.AreEqual(Result, (string)utm);
         }
+
+        [TestMethod]
+        public void DeveRetornarUtmDaUrl()
+        {
+            Utm utm = Result;
+            Assert.AreEqual("https://balta.io/", utm.Url.Address);
+            Assert.AreEqual("src", utm.Campaign.Source);
+            Assert.AreEqual("med", utm.Campaign.Medium);
+            Assert.AreEqual("nme", utm.Campaign.Name);
+            Assert.AreEqual("id", utm.Campaign.Id);
+            Assert.AreEqual("ter", utm.Campaign.Term);
+            Assert.AreEqual("ctn", utm.Campaign.Content);
+        }
     }
 }
